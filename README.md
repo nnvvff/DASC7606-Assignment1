@@ -35,7 +35,7 @@ After checking the quickstart document, make sure you have gained the following 
 - Knowing how to use tmux for unstable network connections.
 
 ## 2.2 Working locally on your own machine
-If you have the GPU resources on your own PC/laptop and wish to use that, that’s fine – you’ll need to install the drivers for your GPU, install CUDA, install cuDNN, and then install PyTorch. You could theoretically do the entire assignment with no GPUs, though this will make training the model much slower.
+If you have an NVIDIA GPU on your own PC/laptop, you may use it after installing a compatible NVIDIA driver. The official PyTorch CUDA wheel used below includes the CUDA runtime and cuDNN components required by this assignment, so you do not need to install a separate CUDA Toolkit or cuDNN package. You can also complete the assignment on CPU, although training will be substantially slower. Separate installation commands for NVIDIA GPU, CPU-only, and macOS environments are provided below.
 
 ## 2.3 Environment Setup
 
@@ -44,29 +44,59 @@ Install Python 3.10 and create a dedicated Conda environment:
 ```bash
 git clone https://github.com/nnvvff/DASC7606-Assignment1.git
 cd DASC7606-Assignment1
-conda create -n cv_env python=3.10
+conda create -n cv_env python=3.10 pip -y
 conda activate cv_env
 ```
 
-Install PyTorch 2.0.1 with CUDA 11.8:
+Install the NumPy version used by the assignment. PyTorch 2.0.1 is not compatible with NumPy 2.x, so do not remove this version constraint:
 
 ```bash
-pip install torch==2.0.1 torchvision==0.15.2 --index-url https://download.pytorch.org/whl/cu118
+python -m pip install numpy==1.26.4
 ```
 
-Install the remaining packages used by the assignment:
+Then choose exactly one of the following PyTorch installations for your platform.
+
+**HKU GPU Farm or Linux/Windows with an NVIDIA GPU (CUDA 11.8):**
 
 ```bash
-pip install numpy matplotlib tqdm jupyterlab
+python -m pip install torch==2.0.1 torchvision==0.15.2 \
+  --index-url https://download.pytorch.org/whl/cu118
 ```
 
-From the repository directory, start JupyterLab and open `Assignment_1.ipynb`:
+**CPU-only Linux/Windows:**
+
+```bash
+python -m pip install torch==2.0.1 torchvision==0.15.2 \
+  --index-url https://download.pytorch.org/whl/cpu
+```
+
+**macOS:**
+
+```bash
+python -m pip install torch==2.0.1 torchvision==0.15.2
+```
+
+Install the notebook and plotting tools, then register this environment as a Jupyter kernel:
+
+```bash
+python -m pip install matplotlib jupyterlab ipykernel
+python -m ipykernel install --user \
+  --name cv_env \
+  --display-name "Python (cv_env)"
+```
+
+Verify the environment before starting the assignment:
+
+```bash
+python -c "import torch, torchvision, numpy; print('torch:', torch.__version__); print('torchvision:', torchvision.__version__); print('numpy:', numpy.__version__); print('CUDA available:', torch.cuda.is_available())"
+```
+
+From the repository directory, start JupyterLab, open `Assignment_1.ipynb`, and select the **Python (cv_env)** kernel if prompted:
 
 ```bash
 jupyter lab
 ```
 
-You must use the provided environment and packages listed above. **Do not install, import, or depend on any additional third-party packages.** Your submitted `model.py` must load successfully in this environment. It may use the Python standard library, PyTorch, and torchvision, but it must not download packages, model weights, or other files when imported.
 
 # 3 Working on the Assignment
 
@@ -127,6 +157,8 @@ If your student ID is `30300xxxxx`, organize the Moodle submission as follows:
 
 Submit `model.pt` when the checkpoint is 100 MB or less. Submit `model_link.txt` instead only when `model.pt` is larger than 100 MB. Do not include both files. The notebook, `model.py`, and checkpoint must correspond to the same final model.
 
+* **Reproducibility requirement:** Your submitted files must contain all code required to reproduce the training of your final model. It is allowed to refactor the notebook into a set of well-organized Python files, but all required files must be included in your submission. The TA may randomly select submissions and reproduce their model training. If the reproduced performance differs substantially from the submitted checkpoint or reported results, the assignment grade will be invalidated.
+
 ## 3.4 Timeline
 
 The following timeline is the same for **Sections A and B**:
@@ -143,10 +175,11 @@ Late submission policy:
 
 ## 3.5 Need More Support?
 
-For questions that may be relevant to other students, first check or post in one of the following places:
+For questions that may be relevant to other students, we encourage you to first check or post in the shared discussion document:
 
-- [GitHub Issues for this assignment](https://github.com/nnvvff/DASC7606-Assignment1/issues)
 - [Shared discussion document](https://docs.google.com/document/d/1q01iqQvupl_uVBY_UcugenknwfbtYwSSBee3wXY30gY/edit?usp=sharing)
+
+For any other private questions, please contact Haomin Bao (baohaomin@connect.hku.hk) via email.
 
 # 4 Marking Scheme
 
@@ -179,7 +212,13 @@ The final report is assessed mainly on the richness of its experiments and analy
 | Basic analysis | 80–90% |
 | Insufficient analysis | Below 80% |
 
-# References
+# 5 Important Notice
+
+- Do not use ready-made neural network architectures, such as complete models from `torchvision.models`, `torch.hub`, or similar model libraries. You may use basic PyTorch and torchvision layers, but you must implement the model architecture yourself.
+- Do not use pretrained weights or transfer learning. Every submitted model must be trained from scratch using the permitted CIFAR-10 training data.
+- Be careful about overfitting. Use the training and validation sets for model development and model selection. Repeatedly tuning your model based on public test-set performance may overfit the public test set and may not improve performance on the unseen evaluation data.
+
+# 6 References
 
 1. Krizhevsky, A., Sutskever, I., and Hinton, G. E. “ImageNet Classification with Deep Convolutional Neural Networks.” NeurIPS 2012. [Paper](https://papers.nips.cc/paper_files/paper/2012/file/c399862d3b9d6b76c8436e924a68c45b-Paper.pdf)
 2. He, K., Zhang, X., Ren, S., and Sun, J. “Deep Residual Learning for Image Recognition.” CVPR 2016. [Paper](https://arxiv.org/pdf/1512.03385)

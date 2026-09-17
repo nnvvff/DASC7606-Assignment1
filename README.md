@@ -157,7 +157,8 @@ If your student ID is `30300xxxxx`, organize the Moodle submission as follows:
 
 Submit `model.pt` when the checkpoint is 100 MB or less. Submit `model_link.txt` instead only when `model.pt` is larger than 100 MB. Do not include both files. The notebook, `model.py`, and checkpoint must correspond to the same final model.
 
-* **Reproducibility requirement:** Your submitted files must contain all code required to reproduce the training of your final model. It is allowed to refactor the notebook into a set of well-organized Python files, but all required files must be included in your submission. The TA may randomly select submissions and reproduce their model training. If the reproduced performance differs substantially from the submitted checkpoint or reported results, the assignment grade will be invalidated.
+> [!IMPORTANT]
+> **Reproducibility requirement:** Your submitted files must contain all code required to reproduce the training of your final model. It is allowed to refactor the notebook into a set of well-organized Python files, but all required files must be included in your submission. The TA may randomly select submissions and reproduce their model training. If the reproduced performance differs substantially from the submitted checkpoint or reported results, the assignment grade will be invalidated.
 
 ## 3.4 Timeline
 

@@ -35,7 +35,7 @@ After checking the quickstart document, make sure you have gained the following 
 - Knowing how to use tmux for unstable network connections.
 
 ## 2.2 Working locally on your own machine
-If you have an NVIDIA GPU on your own PC/laptop, you may use it after installing a compatible NVIDIA driver. The official PyTorch CUDA wheel used below includes the CUDA runtime and cuDNN components required by this assignment, so you do not need to install a separate CUDA Toolkit or cuDNN package. You can also complete the assignment on CPU, although training will be substantially slower. Separate installation commands for NVIDIA GPU, CPU-only, and macOS environments are provided below.
+If you have the GPU resources on your own PC/laptop and wish to use that, that’s fine – you’ll need to install the drivers for your GPU, install CUDA, install cuDNN, and then install PyTorch. You could theoretically do the entire assignment with no GPUs, though this will make training the model much slower.
 
 ## 2.3 Environment Setup
 
@@ -54,49 +54,18 @@ Install the NumPy version used by the assignment. PyTorch 2.0.1 is not compatibl
 python -m pip install numpy==1.26.4
 ```
 
-Then choose exactly one of the following PyTorch installations for your platform.
-
-**HKU GPU Farm or Linux/Windows with an NVIDIA GPU (CUDA 11.8):**
+Install PyTorch 2.0.1 and torchvision 0.15.2 for the HKU GPU Farm (CUDA 11.8):
 
 ```bash
 python -m pip install torch==2.0.1 torchvision==0.15.2 \
   --index-url https://download.pytorch.org/whl/cu118
 ```
 
-**CPU-only Linux/Windows:**
+Install the plotting and notebook tools:
 
 ```bash
-python -m pip install torch==2.0.1 torchvision==0.15.2 \
-  --index-url https://download.pytorch.org/whl/cpu
+python -m pip install matplotlib jupyterlab
 ```
-
-**macOS:**
-
-```bash
-python -m pip install torch==2.0.1 torchvision==0.15.2
-```
-
-Install the notebook and plotting tools, then register this environment as a Jupyter kernel:
-
-```bash
-python -m pip install matplotlib jupyterlab ipykernel
-python -m ipykernel install --user \
-  --name cv_env \
-  --display-name "Python (cv_env)"
-```
-
-Verify the environment before starting the assignment:
-
-```bash
-python -c "import torch, torchvision, numpy; print('torch:', torch.__version__); print('torchvision:', torchvision.__version__); print('numpy:', numpy.__version__); print('CUDA available:', torch.cuda.is_available())"
-```
-
-From the repository directory, start JupyterLab, open `Assignment_1.ipynb`, and select the **Python (cv_env)** kernel if prompted:
-
-```bash
-jupyter lab
-```
-
 
 # 3 Working on the Assignment
 

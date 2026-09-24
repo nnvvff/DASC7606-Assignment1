@@ -189,6 +189,7 @@ The final report is assessed mainly on the richness of its experiments and analy
 
 # 5 Important Notice
 
+- The unseen evaluation data use the same ten-class label space and class-index order as CIFAR-10.
 - Do not use ready-made neural network architectures, such as complete models from `torchvision.models`, `torch.hub`, or similar model libraries. You may use basic PyTorch and torchvision layers, but you must implement the model architecture yourself.
 - Do not use pretrained weights or transfer learning. Every submitted model must be trained from scratch using the permitted CIFAR-10 training data.
 - Be careful about overfitting. Use the training and validation sets for model development and model selection. Repeatedly tuning your model based on public test-set performance may overfit the public test set and may not improve performance on the unseen evaluation data.

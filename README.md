@@ -77,16 +77,16 @@ The notebook downloads CIFAR-10 automatically when required. The unseen evaluati
 
 ## 3.2 Assignment Tasks
 
-**Task 1: Complete three experiments**
+**Task 1: Complete three model development exercises**
 
-Complete all required code for the following three experiments in [Assignment_1.ipynb](Assignment_1.ipynb):
+Complete all required code for the following three exercises in [Assignment_1.ipynb](Assignment_1.ipynb):
 
 1. Build and train the specified convolutional neural network.
 2. Add batch normalization and train the CNN with BN.
 3. Design, train, and evaluate your own improved model.
 
 > [!IMPORTANT]
-> The first experiment serves as the baseline, while the second experiment provides an example of possible improvements. You are encouraged to explore your own modifications based on these examples.
+> Exercise 1 serves as the baseline, while Exercise 2 provides an example of a possible improvement. You are encouraged to explore your own modifications based on these examples.
 
 **Task 2: Write a report (no more than 2 pages)**
 
@@ -97,7 +97,7 @@ Your report should include three main sections: introduction, methods, and exper
 1. **Final report** (`report.pdf`, up to 2 pages)
 
    1. Introduction: briefly introduce the task, background, and related work.
-   2. Methods: explain your improvements to the baseline model (exp1).
+   2. Methods: explain your improvements to the baseline CNN from Exercise 1.
    3. Experiments and analysis:
       - Ablation studies on the validation set. Analyze how different modifications affect performance, such as changes to hyperparameters, model architectures, loss functions, or other training strategies. Validation-set performance should be reported to support your analysis.
 

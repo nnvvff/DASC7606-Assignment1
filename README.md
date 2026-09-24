@@ -85,7 +85,8 @@ Complete all required code for the following three experiments in [Assignment_1.
 2. Add batch normalization and train the CNN with BN.
 3. Design, train, and evaluate your own improved model.
 
-For each experiment, report the required training and validation curves and evaluate the trained model as instructed in the notebook.
+> [!IMPORTANT]
+> The first experiment serves as the baseline, while the second experiment provides an example of possible improvements. You are encouraged to explore your own modifications based on these examples.
 
 **Task 2: Write a report (no more than 2 pages)**
 
@@ -96,8 +97,12 @@ Your report should include three main sections: introduction, methods, and exper
 1. **Final report** (`report.pdf`, up to 2 pages)
 
    1. Introduction: briefly introduce the task, background, and related work.
-   2. Methods: explain your improvements to the baseline model.
-   3. Experiments and analysis: include at least three experiments and analyze the results. Possible analysis includes validation-set ablations, hyperparameters, model architectures, loss functions, and training/validation curves.
+   2. Methods: explain your improvements to the baseline model (exp1).
+   3. Experiments and analysis:
+      - Ablation studies on the validation set. Analyze how different modifications affect performance, such as changes to hyperparameters, model architectures, loss functions, or other training strategies. Validation-set performance should be reported to support your analysis.
+
+      - Additional analysis, such as training and validation loss curves. We do not provide code for logging or visualization tools such as TensorBoard. You are encouraged to implement the necessary logging yourself and use appropriate visualizations to enrich your analysis.
+
 
 2. **Code**
 
